@@ -19,21 +19,22 @@ $.ajax({
 	console.log(response)
     
     for (var i = 0; i < response.response.docs.length; i++) {
-    	// Headline
-    	$('#content').append('<h3>' + response.response.docs[i].headline.main + '</h3>')
+	// Headline
+	$('#content').append('<h3>' + response.response.docs[i].headline.main + '</h3>')
 
-    	// Section
-    	if (response.response.docs[i].news_desk !== '') { 
-    		$('#content').append('Section: ' + response.response.docs[i].news_desk + '<br>') 
-    	} else { 
-    		$('#content').append('Section: ' + response.response.docs[i].section_name + '<br>')
-    	}
+	// Section
+	// If news_desk is null, grab the section name instead
+	if (response.response.docs[i].news_desk !== '') { 
+		$('#content').append('Section: ' + response.response.docs[i].news_desk + '<br>') 
+	} else { 
+		$('#content').append('Section: ' + response.response.docs[i].section_name + '<br>')
+	}
 
-    	// Publish Date
-    	$('#content').append(response.response.docs[i].pub_date + '<br>')
+	// Publish Date
+	$('#content').append(response.response.docs[i].pub_date + '<br>')
 
-    	// URL
-    	$('#content').append('<a href="' + response.response.docs[i].web_url + '" target="_blank">' + response.response.docs[i].web_url + '</a><br><br>')
+	// URL
+	$('#content').append('<a href="' + response.response.docs[i].web_url + '" target="_blank">' + response.response.docs[i].web_url + '</a><br><br>')
 	}
 });
 
